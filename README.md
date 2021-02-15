@@ -11,3 +11,4 @@
 ##### Clone o projeto do repositório;
 ##### Restaure os pacotes da solução;
 ##### Execute o arquivo Auction.sql para criar a estrutura do banco de dados;
+##### Altere a string de conexao com o banco de dados no arquivo Auction.Web\appsettings.json;
