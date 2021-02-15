@@ -10,10 +10,19 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C8520267-AC7F-4EAE-8AD8-5E52FD52FED2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{079BED43-A2F6-4064-A74E-68460C258E8C}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Infra", "Auction.Infra\Auction.Infra.csproj", "{202C0DF0-2A56-4400-8BF1-7B40A044E4E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Web", "Auction.Web\Auction.Web.csproj", "{A87ACCAE-9000-4297-A16A-A900649208C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Web", "Auction.Web\Auction.Web.csproj", "{A87ACCAE-9000-4297-A16A-A900649208C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql", "sql", "{92657021-913E-4ED1-84C1-98684978A2CC}"
+	ProjectSection(SolutionItems) = preProject
+		Auction.sql = Auction.sql
+		Simulação - Relação de Lances por produto (1).sql = Simulação - Relação de Lances por produto (1).sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
