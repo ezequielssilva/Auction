@@ -1,21 +1,24 @@
 ﻿using Auction.Core.Models;
 using Auction.Core.Repositories;
+using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace Auction.Core.Services
 {
     public class NegotiationService : INegotiationService
     {
-        private ModelStateDictionary _ModelState;
+        private IValidationCollection _Validation;
         private INegotiationRepository _NegotiationRepository;
+        private IProductRepository _ProductRepository;
 
         public NegotiationService(
-            ModelStateDictionary modelState,
-            INegotiationRepository negotiationRepository)
+            IValidationCollection validation,
+            INegotiationRepository negotiationRepository,
+            IProductRepository productRepository)
         {
-            _ModelState = modelState;
+            _Validation = validation;
             _NegotiationRepository = negotiationRepository;
+            _ProductRepository = productRepository;
         }
 
         public IList<Negotiation> GetNegotiations()
@@ -30,30 +33,38 @@ namespace Auction.Core.Services
         public bool IsValid(Negotiation negotiation)
         {
             if (negotiation.Value <= negotiation.Product.Value)
-                _ModelState.AddModelError("Value", "Informe um valor maior.");
+                _Validation.AddError("Value", $"Informe um valor maior que {negotiation.Product.ValueFormat}.");
 
             var lastNegotiation = this.LastNegotiationByProduct(negotiation.ProductId);
 
             if (null != lastNegotiation && negotiation.Value <= lastNegotiation.Value)
-                _ModelState.AddModelError("Value", "Informa um lance com o valor maior que o anterior.");
+                _Validation.AddError("Value", $"Informa um lance com o valor maior que {lastNegotiation.ValueFormat}.");
 
             if (negotiation.ProductId == 0)
-                _ModelState.AddModelError("ProductId", "É necessário um produto para que haja uma negociação válida.");
+                _Validation.AddError("ProductId", "É necessário um produto para que haja uma negociação válida.");
 
             if (negotiation.PersonId == 0)
-                _ModelState.AddModelError("PersonId", "É necessário uma pessoa para que haja uma negociação válida.");
+                _Validation.AddError("PersonId", "É necessário uma pessoa para que haja uma negociação válida.");
 
-            return _ModelState.IsValid;
+            return _Validation.IsValid;
         }
 
         public bool CreateNegotiation(Negotiation negotiation)
         {
+            negotiation.Product = _ProductRepository.GetProductById(negotiation.ProductId);
+
             if (!this.IsValid(negotiation))
                 return false;
 
+            negotiation.NegotiatedOn = DateTime.Now;
             _NegotiationRepository.CreateNegotiation(negotiation);
 
-            return false;
+            return true;
+        }
+
+        public IList<ValidationModel> GetErrors()
+        {
+            return _Validation.GetErrors();
         }
     }
 }

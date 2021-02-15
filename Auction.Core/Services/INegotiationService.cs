@@ -10,5 +10,6 @@ namespace Auction.Core.Services
         IList<Negotiation> GetNegotiations();
         IList<Negotiation> GetNegotiationsByPersonName(string name);
         Negotiation LastNegotiationByProduct(int productId);
+        IList<ValidationModel> GetErrors();
     }
 }

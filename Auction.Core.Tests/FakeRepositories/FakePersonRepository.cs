@@ -21,5 +21,10 @@ namespace Auction.Core.Tests.FakeRepositories
             _People.Add(person);
             return true;
         }
+
+        public Person GetPersonByEmail(string email)
+        {
+            return _People.SingleOrDefault(p => p.Email.Equals(email));
+        }
     }
 }

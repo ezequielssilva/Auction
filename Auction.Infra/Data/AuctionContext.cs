@@ -9,10 +9,7 @@ namespace Auction.Infra.Data
         public DbSet<Person> People { get; set; }
         public DbSet<Negotiation> Negotiations { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=.\SQL;Database=Auction;User Id=sa;Password=E34A18M@gf;");
-        }
+        public AuctionContext(DbContextOptions<AuctionContext> opt) : base(opt) {}
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

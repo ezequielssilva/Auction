@@ -1,0 +1,30 @@
+﻿@model Auction.Core.Models.Person
+
+@{
+    ViewData["Title"] = "Negociar Produtos";
+}
+
+<div class="row">
+    <div class="col-4 offset-4">
+        <div class="card">
+            <h5 class="card-header text-center">@ViewData["Title"]</h5>
+            <div class="card-body">
+                <form asp-action="VerifaceEmail" method="post" class="text-center">
+                    <div class="row form-group">
+                        <div class="col-12">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control form-control-sm text-center" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-sm btn-success btn-block">Salvar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

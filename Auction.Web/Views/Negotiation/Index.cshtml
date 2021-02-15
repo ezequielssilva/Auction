@@ -1,0 +1,43 @@
+﻿@model Auction.Core.Models.Negotiation
+
+@{
+    ViewData["Title"] = "Produtos em Leilão";
+}
+
+<div class="row">
+    <div class="col-8 offset-2">
+        <div class="card">
+            <h5 class="card-header text-center">@ViewData["Title"]</h5>
+            <div class="card-body">
+                <table class="table table-sm table-hover">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome do Produto</th>
+                        <th>Valor do Produto</th>
+                        <th>Ações</th>
+                    </tr>
+
+
+                    @foreach (var product in @ViewBag.Products)
+                    {
+                        <form asp-action="Create" method="get">
+
+                            <tr>
+                                <td>@product.Id</td>
+                                <td>@product.Name</td>
+                                <td>@product.ValueFormat</td>
+                                <td>
+                                    <input asp-for="PersonId" type="hidden" />
+                                    <input type="hidden" name="ProductId" value="@product.Id" />
+                                    <button type="submit" class="btn btn-sm btn-success">Realizar Lance</button>
+                                </td>
+                            </tr>
+
+                        </form>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

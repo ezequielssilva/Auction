@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C8520267-AC7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{079BED43-A2F6-4064-A74E-68460C258E8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Infra", "Auction.Infra\Auction.Infra.csproj", "{202C0DF0-2A56-4400-8BF1-7B40A044E4E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Infra", "Auction.Infra\Auction.Infra.csproj", "{202C0DF0-2A56-4400-8BF1-7B40A044E4E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Web", "Auction.Web\Auction.Web.csproj", "{A87ACCAE-9000-4297-A16A-A900649208C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{202C0DF0-2A56-4400-8BF1-7B40A044E4E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{202C0DF0-2A56-4400-8BF1-7B40A044E4E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{202C0DF0-2A56-4400-8BF1-7B40A044E4E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A87ACCAE-9000-4297-A16A-A900649208C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A87ACCAE-9000-4297-A16A-A900649208C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A87ACCAE-9000-4297-A16A-A900649208C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A87ACCAE-9000-4297-A16A-A900649208C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{5BF0CED4-0FE2-4203-922E-69215E9F7535} = {C8520267-AC7F-4EAE-8AD8-5E52FD52FED2}
 		{EA97E3DD-E38B-4601-BC8A-BB1ADE77F01B} = {079BED43-A2F6-4064-A74E-68460C258E8C}
 		{202C0DF0-2A56-4400-8BF1-7B40A044E4E9} = {C8520267-AC7F-4EAE-8AD8-5E52FD52FED2}
+		{A87ACCAE-9000-4297-A16A-A900649208C6} = {C8520267-AC7F-4EAE-8AD8-5E52FD52FED2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EDAC42B0-9840-493A-B663-27272FFA2D7A}

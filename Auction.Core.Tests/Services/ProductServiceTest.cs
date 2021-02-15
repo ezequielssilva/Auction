@@ -2,7 +2,6 @@
 using Auction.Core.Services;
 using Auction.Core.Tests.FakeRepositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Web.Mvc;
 
 namespace Auction.Core.Tests.Services
 {
@@ -15,7 +14,7 @@ namespace Auction.Core.Tests.Services
         public ProductServiceTest()
         {
             _ProductService = new ProductService(
-                new ModelStateDictionary(), 
+                new ValidationCollection(),
                 new FakeProductRepository());
         }
 

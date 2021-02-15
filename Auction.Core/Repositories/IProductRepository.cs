@@ -6,6 +6,7 @@ namespace Auction.Core.Repositories
     public interface IProductRepository
     {
         IList<Product> GetProducts();
+        Product GetProductById(int id);
         bool CreateProduct(Product product);
     }
 }

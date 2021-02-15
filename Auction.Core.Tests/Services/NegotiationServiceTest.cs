@@ -3,7 +3,6 @@ using Auction.Core.Services;
 using Auction.Core.Tests.FakeRepositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Web.Mvc;
 
 namespace Auction.Core.Tests.Services
 {
@@ -15,8 +14,9 @@ namespace Auction.Core.Tests.Services
         public NegotiationServiceTest()
         {
             _NegotiationService = new NegotiationService(
-                new ModelStateDictionary(),
-                new FakeNegotiationRepository());
+                new ValidationCollection(),
+                new FakeNegotiationRepository(),
+                new FakeProductRepository());
         }
 
         [TestMethod]
@@ -24,7 +24,7 @@ namespace Auction.Core.Tests.Services
         {
             var person = new Person();
             person.Name = "Marcos Ferreira";
-            person.Document = "44000383787";
+            person.Email = "marcosferreira@email.com";
             person.DateOfBirth = new DateTime(1995, 10, 12);
 
             var product = new Product();
@@ -46,7 +46,7 @@ namespace Auction.Core.Tests.Services
         {
             var person = new Person();
             person.Name = "Marcos Ferreira";
-            person.Document = "44000383787";
+            person.Email = "marcosferreira@email.com";
             person.DateOfBirth = new DateTime(1995, 10, 12);
 
             var product = new Product();
@@ -68,7 +68,7 @@ namespace Auction.Core.Tests.Services
         {
             var person = new Person();
             person.Name = "Marcos Ferreira";
-            person.Document = "44000383787";
+            person.Email = "marcosferreira@email.com";
             person.DateOfBirth = new DateTime(1995, 10, 12);
 
             var product = new Product();
