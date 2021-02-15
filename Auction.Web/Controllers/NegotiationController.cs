@@ -1,6 +1,6 @@
 ﻿using Auction.Core.Models;
 using Auction.Core.Services;
-using Auction.Core.Validations;
+using Auction.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

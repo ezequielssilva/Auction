@@ -32,13 +32,11 @@ namespace Auction.Core.Services
 
         public bool IsValid(Negotiation negotiation)
         {
-            if (negotiation.Value <= negotiation.Product.Value)
-                _Validation.AddError("Value", $"Informe um valor maior que {negotiation.Product.ValueFormat}.");
-
             var lastNegotiation = this.LastNegotiationByProduct(negotiation.ProductId);
-
             if (null != lastNegotiation && negotiation.Value <= lastNegotiation.Value)
                 _Validation.AddError("Value", $"Informa um lance com o valor maior que {lastNegotiation.ValueFormat}.");
+            else if (negotiation.Value <= negotiation.Product.Value)
+                _Validation.AddError("Value", $"Informe um valor maior que {negotiation.Product.ValueFormat}.");
 
             if (negotiation.ProductId == 0)
                 _Validation.AddError("ProductId", "É necessário um produto para que haja uma negociação válida.");

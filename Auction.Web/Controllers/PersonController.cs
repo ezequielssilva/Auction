@@ -1,6 +1,6 @@
 ﻿using Auction.Core.Models;
 using Auction.Core.Services;
-using Auction.Core.Validations;
+using Auction.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Auction.Web.Controllers
@@ -19,23 +19,26 @@ namespace Auction.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult VerifaceEmail()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult VerifaceEmail([Bind("Email")] string email)
+        public IActionResult VerifaceEmail([Bind("Email")] Person personParam)
         {
             _ValidationWrapper.SetModelState(this.ModelState);
 
-            if (!_PersonService.IsValidEmail(email))
+            if (!_PersonService.IsValidEmail(personParam.Email))
+            {
+                _ValidationWrapper.MapTo(_PersonService.GetErrors());
                 return View();
+            }
 
-            var person = _PersonService.GetPersonByEmail(email);
+            var person = _PersonService.GetPersonByEmail(personParam.Email);
 
             if (null == person)
-                return RedirectToAction("Create", "Person", new { email = email });
+                return RedirectToAction("Create", "Person", new { email = personParam.Email });
 
             return RedirectToAction("Index", "Negotiation", new { personId = person.Id });
         }

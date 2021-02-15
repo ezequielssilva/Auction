@@ -27,28 +27,39 @@ namespace Auction.Core.Services
 
         public int GetAge(Person person)
         {
-            return new DateTime(DateTime.Now.Subtract(person.DateOfBirth).Ticks).Year - 1;
+            return new DateTime(DateTime.Now.Subtract((DateTime)person?.DateOfBirth).Ticks).Year - 1;
         }
 
         public bool IsValidEmail(string email)
         {
+            if (String.IsNullOrEmpty(email))
+            {
+                _Validation.AddError("Email", "Informe o E-mail.");
+                return false;
+            }
+
             var regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            return regex.IsMatch(email);
+
+            if (regex.IsMatch(email))
+                return true;
+
+            _Validation.AddError("Email", "Informe um E-mail válido.");
+            return false;
         }
 
         public bool IsValid(Person person)
         {
-            if (person.Name.Trim().Length == 0)
-                _Validation.AddError("Name", "Preencha o campo Nome.");
+            if (String.IsNullOrEmpty(person.Name))
+                _Validation.AddError("Name", "Informe o seu Nome.");
 
-            if (this.GetAge(person) < 18)
-                _Validation.AddError("DateOfBirth", "Você precisa ter 18 ou mais para particpar do leilão.");
+            if (null == person.DateOfBirth)
+                _Validation.AddError("DateOfBirth", "Informe sua Data de Nascimento.");
+            else if (person.DateOfBirth < new DateTime(1900, 1, 1) || person.DateOfBirth > DateTime.Now.Date)
+                _Validation.AddError("DateOfBirth", "Data de Nascimento Inválida.");
+            else if (this.GetAge(person) < 18)
+                _Validation.AddError("DateOfBirth", "Você precisa ter 18 anos ou mais para particpar do leilão.");
 
-            if (String.IsNullOrEmpty(person.Email))
-                _Validation.AddError("Email", "Informe o E-mail.");
-
-            if (!this.IsValidEmail(person.Email))
-                _Validation.AddError("Email", "Informe um E-mail válido.");
+            this.IsValidEmail(person.Email);
 
             return _Validation.IsValid;
         }

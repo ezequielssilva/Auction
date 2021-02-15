@@ -1,9 +1,9 @@
 using Auction.Core;
 using Auction.Core.Repositories;
 using Auction.Core.Services;
-using Auction.Core.Validations;
 using Auction.Infra.Data;
 using Auction.Infra.Repositories;
+using Auction.Web.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +30,6 @@ namespace Auction.Web
             services.AddDbContext<AuctionContext>(opt => opt.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 
             services.AddTransient<IValidationWrapper, ValidationWrapper>();
-
             services.AddTransient<IValidationCollection, ValidationCollection>();
 
             services.AddTransient<IProductRepository, ProductRepository>();

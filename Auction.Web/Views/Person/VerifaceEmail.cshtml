@@ -9,12 +9,12 @@
         <div class="card">
             <h5 class="card-header text-center">@ViewData["Title"]</h5>
             <div class="card-body">
-                <form asp-action="VerifaceEmail" method="post" class="text-center">
+                <form asp-action="VerifaceEmail" asp-controller="Person" method="post" class="text-center">
                     <div class="row form-group">
                         <div class="col-12">
                             <label asp-for="Email"></label>
                             <input asp-for="Email" class="form-control form-control-sm text-center" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                     </div>
 

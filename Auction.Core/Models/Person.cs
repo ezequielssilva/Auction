@@ -14,8 +14,8 @@ namespace Auction.Core.Models
         public string Name { get; set; }
 
         [Display(Name = "Data de Nascimento do Comprador")]
-        [DataType(DataType.Date)]
-        public DateTime DateOfBirth { get; set; }
+        [DataType(DataType.Text)]
+        public DateTime? DateOfBirth { get; set; }
         public DateTime RegisteredIn { get; set; }
     }
 }

@@ -1,10 +1,7 @@
-﻿using Auction.Core;
-using Auction.Core.Validations;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.Collections;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Collections.Generic;
 
-namespace Auction.Web
+namespace Auction.Web.Helpers
 {
     public class ValidationWrapper : IValidationWrapper
     {
@@ -14,17 +11,17 @@ namespace Auction.Web
             get;
         }
 
-        public bool IsValid => throw new System.NotImplementedException();
-
-        public void SetModelState(IEnumerable modelState)
-        {
-            ModelState = (ModelStateDictionary)modelState;
-        }
+        public bool IsValid => ModelState.IsValid;
 
         public void MapTo(IList<ValidationModel> errors)
         {
             foreach (ValidationModel model in errors)
                 ModelState.AddModelError(model.Attribute, model.Message);
+        }
+
+        public void SetModelState(ModelStateDictionary modelState)
+        {
+            ModelState = modelState;
         }
     }
 }
