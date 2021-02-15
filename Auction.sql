@@ -2,10 +2,6 @@ USE master
 
 GO
 
-DROP DATABASE Auction
-
-GO
-
 CREATE DATABASE Auction
 
 GO 
